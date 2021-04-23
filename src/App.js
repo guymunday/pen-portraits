@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import Game from "./components/Game";
+import { useGameStateContext, useGameDispatchContext } from "./reducer/gameReducer";
+import Winner from "./components/Winner";
+import { useCookies } from "react-cookie";
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 
-function App() {
+export default function App() {
+  const [newGame, setNewGame] = React.useState(false);
+  const [flipped, setFlipped] = React.useState([]);
+  const { currentPrize } = useGameStateContext();
+  const [cookies] = useCookies();
+  const playAttempts = parseInt(cookies.playAttempts);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <h1>Home</h1>
+          </Route>
+          <Route path="/play">
+            <Game
+              newGame={newGame}
+              setNewGame={setNewGame}
+              flipped={flipped}
+              setFlipped={setFlipped}
+            />
+          </Route>
+          
+        </Switch>
+      </Router>
+    </>
   );
 }
-
-export default App;
