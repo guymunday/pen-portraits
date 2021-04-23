@@ -34,16 +34,20 @@ const FrameStyles = styled.div`
 `;
 
 export default function Frame({ image, children, ...rest }) {
+  const [loaded, setLoaded] = React.useState(false);
+
   return (
     <>
-      <FrameStyles className="card" {...rest}>
+      <FrameStyles className="card" onLoad={() => setLoaded(true)} {...rest}>
         <div className="frame-inner">{children}</div>
-        <img
-          className="frame-image"
-          src={image}
-          alt="Portrait frame"
-          loading="lazy"
-        />
+        {loaded && (
+          <img
+            className="frame-image"
+            src={image}
+            alt="Portrait frame"
+            loading="lazy"
+          />
+        )}
       </FrameStyles>
     </>
   );
