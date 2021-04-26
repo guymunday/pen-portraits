@@ -13,10 +13,16 @@ import {
 import { useCookies } from "react-cookie";
 import MaxAttempts from "./MaxAttempts";
 
+const Title = styled.h1`
+  display: block;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  padding: 30px;
+`;
+
 const FrameLayout = styled.div`
   width: 100%;
-  background: #000;
-  background-image: url();
   .frames-inner {
     width: 100%;
     display: flex;
@@ -68,9 +74,9 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
     let tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
 
     if (!cookies.playAttempts) {
-      setCookie("playAttempts", "1", { path: "/", expires: tomorrow });
+      setCookie("playAttempts", "4", { path: "/", expires: tomorrow });
     } else {
-      let attempts = parseInt(cookies.playAttempts) + 1;
+      let attempts = parseInt(cookies.playAttempts) - 1;
       setCookie("playAttempts", attempts.toString(), {
         path: "/",
         expires: tomorrow,
@@ -79,7 +85,7 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
   };
 
   const handleCardClick = (i) => {
-    if (parseInt(cookies.playAttempts) > 4) {
+    if (parseInt(cookies.playAttempts) === 0) {
       return;
     } else if (flipped.includes(i)) {
       return;
@@ -145,14 +151,15 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
     }
   }, [firstPrize, secondPrize]);
 
-  React.useEffect(() => {
-    if (match) {
-      console.log(currentPrize);
-    }
-  }, [currentPrize]);
+  // React.useEffect(() => {
+  //   if (match) {
+  //     console.log(currentPrize);
+  //   }
+  // }, [currentPrize]);
 
   return (
     <>
+      <Title>Pair a portrait</Title>
       <FrameLayout>
         <div className="frames-inner">
           {frames.map((f, i) => {
@@ -177,7 +184,11 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
           })}
         </div>
       </FrameLayout>
-      {parseInt(cookies.playAttempts) > 4 && <MaxAttempts />}
+      <Title>
+        Music Attempts Terms {cookies.playAttempts ? cookies.playAttempts : 5}
+      </Title>
+
+      {parseInt(cookies.playAttempts) === 0 && <MaxAttempts />}
       {currentPrize && (
         <Winner
           newGame={newGame}

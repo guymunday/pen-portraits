@@ -7,6 +7,7 @@ const CardStyles = styled.div`
   justify-content: center;
   height: 100%;
   width: 100%;
+  cursor: pointer;
   .card-inner {
     position: relative;
     .portrait-image {
@@ -46,7 +47,7 @@ export default function Card({
 }) {
   return (
     <>
-      <CardStyles className={flipped.includes(i) ? " lipped" : ""} {...rest}>
+      <CardStyles className={flipped.includes(i) ? " flipped" : ""} {...rest}>
         <div className="card-inner">
           <img
             className={

@@ -45,7 +45,6 @@ export default function Frame({ image, children, ...rest }) {
             className="frame-image"
             src={image}
             alt="Portrait frame"
-            loading="lazy"
           />
         )}
       </FrameStyles>
