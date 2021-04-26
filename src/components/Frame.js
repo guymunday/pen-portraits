@@ -38,15 +38,16 @@ export default function Frame({ image, children, ...rest }) {
 
   return (
     <>
-      <FrameStyles className="card" onLoad={() => setLoaded(true)} {...rest}>
+      <FrameStyles className="card" {...rest}>
         <div className="frame-inner">{children}</div>
-        {loaded && (
-          <img
-            className="frame-image"
-            src={image}
-            alt="Portrait frame"
-          />
-        )}
+
+        <img
+          className="frame-image"
+          src={image}
+          alt="Portrait frame"
+          style={{ display: loaded ? "block" : "none" }}
+          onLoad={() => setLoaded(true)}
+        />
       </FrameStyles>
     </>
   );
