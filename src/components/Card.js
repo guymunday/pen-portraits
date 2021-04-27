@@ -13,7 +13,6 @@ const CardStyles = styled.div`
     .portrait-image {
       width: 100%;
       height: auto;
-      padding: 12px;
       transition: 0.4s;
       backface-visibility: hidden;
       pointer-events: none;

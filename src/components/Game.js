@@ -23,14 +23,24 @@ const Title = styled.h1`
 
 const FrameLayout = styled.div`
   width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
   .frames-inner {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 30px;
+    /* padding: 30px; */
   }
+`;
+
+const AttemptsLeft = styled.div`
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  padding: 30px;
 `;
 
 export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
@@ -38,6 +48,7 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
   const { firstPrize, secondPrize, currentPrize } = useGameStateContext();
   const dispatch = useGameDispatchContext();
   const [cookies, setCookie] = useCookies(["playAttempts"]);
+  const [loaded, setLoaded] = React.useState(false);
 
   const shuffleCards = () => {
     const cardSelector = document.querySelectorAll(".card");
@@ -56,6 +67,7 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
       opacity: 0,
       stagger: 0.1,
       duration: 0.3,
+      delay: 0.5,
     }).fromTo(
       ".card",
       { rotation: -20 },
@@ -103,7 +115,7 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
       });
       setMatch(false);
       setFlipped([...flipped, i]);
-      setTimeout(() => setFlipped([]), 800);
+      setTimeout(() => setFlipped([]), 500);
     } else if (firstPrize === shuffledPrizes[i]) {
       dispatch({
         type: "UPDATE_SECOND_PRIZE",
@@ -159,15 +171,18 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
 
   return (
     <>
-      <Title>Pair a portrait</Title>
+      {loaded && <Title>Pair a portrait</Title>}
       <FrameLayout>
         <div className="frames-inner">
           {frames.map((f, i) => {
             return (
               <>
                 <Frame
+                  i={i}
                   key={i}
                   image={f}
+                  loaded={loaded}
+                  setLoaded={setLoaded}
                   onClick={() => {
                     handleCardClick(i);
                   }}
@@ -184,10 +199,15 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
           })}
         </div>
       </FrameLayout>
-      <Title>
-        Music Attempts Terms {cookies.playAttempts ? cookies.playAttempts : 5}
-      </Title>
-
+      {loaded && (
+        <AttemptsLeft>
+          Attempts{" "}
+          <span style={{ fontSize: "1.6rem", margin: "0 20px" }}>
+            {cookies.playAttempts ? cookies.playAttempts : 5}/5
+          </span>{" "}
+          Remaining
+        </AttemptsLeft>
+      )}
       {parseInt(cookies.playAttempts) === 0 && <MaxAttempts />}
       {currentPrize && (
         <Winner

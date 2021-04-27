@@ -6,7 +6,6 @@ import {
 import { useCookies } from "react-cookie";
 import Popup from "./Popup";
 import SwirlSvg from "./SwirlSvg";
-import { gsap } from "gsap";
 
 export default function Winner({ newGame, setNewGame, setFlipped }) {
   const { currentPrize } = useGameStateContext();
@@ -33,12 +32,6 @@ export default function Winner({ newGame, setNewGame, setFlipped }) {
     setFlipped([]);
     setNewGame(!newGame);
   };
-
-  React.useEffect(() => {
-    gsap.from(".popup-inner", {
-      scale: 0.3,
-    });
-  }, [currentPrize]);
 
   return (
     <>

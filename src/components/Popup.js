@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { gsap } from "gsap";
 
 const PopupStyles = styled.div`
   position: fixed;
@@ -14,6 +15,7 @@ const PopupStyles = styled.div`
   justify-content: center;
   overflow: scroll;
   background: rgba(0, 0, 0, 0.8);
+  font-family: "TTBarrels";
   .popup-inner {
     max-width: 320px;
     margin: auto;
@@ -25,6 +27,12 @@ const PopupStyles = styled.div`
 `;
 
 export default function Popup({ children, ...rest }) {
+  React.useEffect(() => {
+    gsap.from(".popup-inner", {
+      scale: 0.3,
+    });
+  }, []);
+
   return (
     <>
       <PopupStyles {...rest}>

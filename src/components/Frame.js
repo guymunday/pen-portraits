@@ -4,7 +4,7 @@ import styled from "styled-components";
 const FrameStyles = styled.div`
   width: 30%;
   height: 100%;
-  padding: 3px;
+  margin: 3px;
   position: relative;
   overflow: hidden;
   @media screen and (min-aspect-ratio: 235 / 406) {
@@ -16,31 +16,44 @@ const FrameStyles = styled.div`
   @media screen and (min-aspect-ratio: 57 / 43) {
     width: 15%;
   }
-  .frame-inner {
+
+  .frame-inner,
+  .frame-offwhite {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
+  }
+  .frame-offwhite {
+    background: var(--offwhite);
   }
   .frame-image {
     display: block;
-    width: 100%;
-    height: auto;
+    /* width: 100%; */
+    height: 100%;
     pointer-events: none;
     position: relative;
   }
 `;
 
-export default function Frame({ image, children, ...rest }) {
-  const [loaded, setLoaded] = React.useState(false);
-
+export default function Frame({
+  i,
+  image,
+  children,
+  loaded,
+  setLoaded,
+  ...rest
+}) {
   return (
     <>
       <FrameStyles className="card" {...rest}>
+        <div
+          className="frame-offwhite"
+          style={{ borderRadius: i === 0 || i === 6 ? "50%" : "0px" }}
+        />
         <div className="frame-inner">{children}</div>
-
         <img
           className="frame-image"
           src={image}

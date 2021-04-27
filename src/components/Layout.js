@@ -3,33 +3,103 @@ import Header from "./Header";
 import Footer from "./Footer";
 import styled from "styled-components";
 import light from "../assets/images/room-assets/light.png";
+import chair from "../assets/images/room-assets/chair.png";
+import plant from "../assets/images/room-assets/plant.png";
+import leaves from "../assets/images/room-assets/leaves.png";
+import Terms from "./Terms";
 
 const LayoutStyles = styled.main`
-  background: #000;
+  background: #01263c;
   position: relative;
   overflow: hidden;
-  z-index: 1;
-  .light-image {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .furniture {
     position: absolute;
     display: block;
-    top: -20%;
-    left: 50%;
     transform: translate(-50%, 0);
     width: 30%;
     max-width: 300px;
-    z-index: 0;
+    &.light-image {
+      top: -20%;
+      left: 50%;
+    }
+    &.chair-image {
+      bottom: -20%;
+      right: -10%;
+    }
+    &.left-plant-image {
+      bottom: -25%;
+      left: 25%;
+    }
+    &.right-plant-image {
+      bottom: -25%;
+      right: 10%;
+    }
+    &.left-leaves-image {
+      bottom: -8%;
+      left: 10%;
+      max-width: 400px;
+      transform: translate(-50%, 0) scaleX(-1) rotate(30deg);
+    }
+  }
+  .layout-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 1));
+  }
+`;
+
+const ButtonFlex = styled.div`
+  display: flex;
+  position: relative;
+  padding: 30px;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  width: 100%;
+  .controls {
+    cursor: pointer;
+    text-decoration: underline;
   }
 `;
 
 export default function Layout({ children }) {
+  const [showTerms, setShowTerms] = React.useState(false);
+
   return (
     <>
       <Header />
       <LayoutStyles>
-        <img src={light} alt="" className="light-image" />
-        {children}
+        <img src={light} alt="" className="light-image furniture" />
+        <img src={chair} alt="" className="chair-image furniture" />
+        <img src={plant} alt="" className="left-plant-image furniture" />
+        <img src={plant} alt="" className="right-plant-image furniture" />
+        <img src={leaves} alt="" className="left-leaves-image furniture" />
+        <div className="layout-gradient" />
+        <div style={{ position: "relative" }}>{children}</div>
+        <ButtonFlex>
+          <div role="button" className="controls">
+            Music
+          </div>
+          <div
+            role="button"
+            className="controls"
+            onClick={() => setShowTerms(!showTerms)}
+          >
+            Terms
+          </div>
+        </ButtonFlex>
       </LayoutStyles>
       <Footer />
+      {showTerms && <Terms setShowTerms={setShowTerms} />}
     </>
   );
 }

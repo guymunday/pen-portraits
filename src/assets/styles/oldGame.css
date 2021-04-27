@@ -60,6 +60,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "TTBarrels";
+  src: url("../fonts/TTBarrels-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /*Header*/
 header {
   position: fixed;
@@ -67,7 +75,7 @@ header {
   background-color: #ffffff;
   width: 100%;
   letter-spacing: normal;
-  z-index: 4;
+  z-index: 1;
 }
 .container-fluid {
   padding-right: 15px;
@@ -1578,7 +1586,7 @@ footer .select2-results__options li.selected {
 }
 header {
   position: relative;
-  z-index: 99;
+  /* z-index: 99; */
 }
 #form-add,
 #form-add input[type="text"] {
