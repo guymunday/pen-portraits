@@ -49,6 +49,7 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
   const dispatch = useGameDispatchContext();
   const [cookies, setCookie] = useCookies(["playAttempts"]);
   const [loaded, setLoaded] = React.useState(false);
+  const [imgsLoaded, setImgsLoaded] = React.useState(false);
 
   const shuffleCards = () => {
     const cardSelector = document.querySelectorAll(".card");
@@ -80,7 +81,7 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
       },
       "<"
     );
-  }, [newGame]);
+  }, [imgsLoaded]);
 
   const saveToCookies = () => {
     let tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
@@ -169,34 +170,59 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
   //   }
   // }, [currentPrize]);
 
+  React.useEffect(() => {
+    const loadImage = (image) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = image;
+        console.log(loadImg.src);
+        // wait 2 seconds to simulate loading time
+        loadImg.onload = () =>
+          setTimeout(() => {
+            resolve(image);
+          }, 2000);
+
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+
+    Promise.all(frames.map((image) => loadImage(image)))
+      .then(() => setImgsLoaded(true))
+      .catch((err) => console.log("Failed to load images", err));
+  }, []);
+
   return (
     <>
       {loaded && <Title>Pair a portrait</Title>}
       <FrameLayout>
         <div className="frames-inner">
-          {frames.map((f, i) => {
-            return (
-              <>
-                <Frame
-                  i={i}
-                  key={i}
-                  image={f}
-                  loaded={loaded}
-                  setLoaded={setLoaded}
-                  onClick={() => {
-                    handleCardClick(i);
-                  }}
-                >
-                  <Card
-                    portrait={portraits[i]}
-                    prize={shuffledPrizes[i]}
-                    flipped={flipped}
+          {imgsLoaded ? (
+            frames.map((f, i) => {
+              return (
+                <>
+                  <Frame
                     i={i}
-                  />
-                </Frame>
-              </>
-            );
-          })}
+                    key={i}
+                    image={f}
+                    loaded={loaded}
+                    setLoaded={setLoaded}
+                    onClick={() => {
+                      handleCardClick(i);
+                    }}
+                  >
+                    <Card
+                      portrait={portraits[i]}
+                      prize={shuffledPrizes[i]}
+                      flipped={flipped}
+                      i={i}
+                    />
+                  </Frame>
+                </>
+              );
+            })
+          ) : (
+            <h1>Loading...</h1>
+          )}
         </div>
       </FrameLayout>
       {loaded && (
@@ -208,7 +234,7 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
           Remaining
         </AttemptsLeft>
       )}
-      {parseInt(cookies.playAttempts) === 0 && <MaxAttempts />}
+      {parseInt(cookies.playAttempts) === 0 && !currentPrize && <MaxAttempts />}
       {currentPrize && (
         <Winner
           newGame={newGame}

@@ -58,7 +58,7 @@ export default function Frame({
           className="frame-image"
           src={image}
           alt="Portrait frame"
-          style={{ display: loaded ? "block" : "none" }}
+          style={{ visibility: loaded ? "visible" : "hidden" }}
           onLoad={() => setLoaded(true)}
         />
       </FrameStyles>

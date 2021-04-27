@@ -60,7 +60,7 @@ const gameReducer = (state, action) => {
     case "UPDATE_BACKUP_PRIZE": {
       return {
         ...state,
-        previousPrize: action.prize,
+        previousPrize: "action.prize",
       };
     }
     case "UPDATE_FIRST_PRIZE": {

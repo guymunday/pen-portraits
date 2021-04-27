@@ -3,14 +3,14 @@ import {
   useGameStateContext,
   useGameDispatchContext,
 } from "../reducer/gameReducer";
-import { useCookies } from "react-cookie";
 import Popup from "./Popup";
 import SwirlSvg from "./SwirlSvg";
+import Terms from "./Terms";
 
 export default function Winner({ newGame, setNewGame, setFlipped }) {
   const { currentPrize } = useGameStateContext();
   const dispatch = useGameDispatchContext();
-  const [cookies] = useCookies("playAttempts");
+  const [showTerms, setShowTerms] = React.useState(false);
 
   const handleNewGame = () => {
     dispatch({
@@ -35,18 +35,30 @@ export default function Winner({ newGame, setNewGame, setFlipped }) {
 
   return (
     <>
-      <Popup className="popup">
-        <h2>
-          You found a match <br /> and won a prize!
-        </h2>
-        <SwirlSvg />
-        <img src={currentPrize.prizeImage} alt={currentPrize.prizeName} />
-        <p>
-          Prize: {currentPrize.prizeName} {cookies.playAttempts}
-        </p>
-        <button>Claim Prize</button>
-        <button onClick={handleNewGame}>Play again</button>
-      </Popup>
+      {!showTerms && (
+        <Popup className="popup">
+          <h2>
+            You found a match <br /> and won a prize!
+          </h2>
+          <SwirlSvg />
+          <img src={currentPrize.prizeImage} alt={currentPrize.prizeName} />
+          <p>Prize: {currentPrize.prizeName}</p>
+          <button>Add to basket</button>
+          <button onClick={handleNewGame}>Play again</button>
+          <p>
+            Your prize will be added to your basket with an order of £140 or
+            more. Limited to 5 plays per day.{" "}
+            <span
+              style={{ textDecoration: "underline" }}
+              role="button"
+              onClick={() => setShowTerms(!showTerms)}
+            >
+              Peruse the full terms and conditions.
+            </span>
+          </p>
+        </Popup>
+      )}
+      {showTerms && <Terms setShowTerms={setShowTerms} />}
     </>
   );
 }
