@@ -26,6 +26,7 @@ const FrameLayout = styled.div`
   max-width: 1200px;
   margin: auto;
   position: relative;
+
   .frames-inner {
     width: 100%;
     display: flex;

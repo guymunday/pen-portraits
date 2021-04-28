@@ -48,16 +48,24 @@ export default function Home() {
             <h1 style={{ fontSize: 38 }}>PAIR A PORTRAIT</h1>
           )}
           <SwirlSvg white />
-          <Frame image={frame} style={{ width: "100%" }}>
-            <Card
-              portrait={portrait}
-              prize={prize}
-              i={index}
-              flipped={"1"}
-              style={{ cursor: "auto" }}
-            />
-          </Frame>
-
+          <Link
+            style={{ display: "inline-block" }}
+            to={parseInt(cookies.playAttempts) > 0 ? "/play" : ""}
+          >
+            <Frame image={frame} style={{ width: "100%" }}>
+              <Card
+                portrait={portrait}
+                prize={prize}
+                i={index}
+                flipped={"1"}
+                style={
+                  parseInt(cookies.playAttempts) === 0
+                    ? { cursor: "auto" }
+                    : null
+                }
+              />
+            </Frame>
+          </Link>
           {parseInt(cookies.playAttempts) === 0 ? (
             <p style={{ fontSize: 22 }}>
               You’ve used all of your attempts today, come back tomorrow to try
