@@ -7,7 +7,7 @@ const FrameStyles = styled.div`
   margin: 3px;
   position: relative;
   overflow: hidden;
-  @media screen and (min-aspect-ratio: 1100 / 1920) {
+  @media screen and (min-aspect-ratio: 10 / 16) {
     width: 22%;
   }
   @media screen and (min-aspect-ratio: 45 / 43) {
