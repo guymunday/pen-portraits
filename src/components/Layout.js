@@ -8,7 +8,6 @@ import plant from "../assets/images/room-assets/plant.png";
 import leaves from "../assets/images/room-assets/leaves.png";
 import clock from "../assets/images/room-assets/clock.png";
 import Terms from "./Terms";
-import LazyLoad from "react-lazy-load";
 
 const LayoutStyles = styled.main`
   background: #01263c;
@@ -95,9 +94,7 @@ export default function Layout({ children }) {
     <>
       <Header />
       <LayoutStyles>
-        <LazyLoad>
-          <img src={light} alt="" className="light-image furniture" />
-        </LazyLoad>
+        <img src={light} alt="" className="light-image furniture" />
         <img src={chair} alt="" className="chair-image furniture hide-mobile" />
         <img src={clock} alt="" className="clock-image furniture hide-mobile" />
         <img
