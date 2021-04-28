@@ -9,6 +9,7 @@ import Frame from "./Frame";
 import Card from "./Card";
 import prize from "../assets/images/prizes/matthew.png";
 import { gsap } from "gsap";
+import LazyLoad from "react-lazy-load";
 
 const HomeStyles = styled.div`
   color: white;
@@ -44,13 +45,9 @@ export default function Home() {
           {parseInt(cookies.playAttempts) === 0 ? (
             <h1 style={{ fontSize: 38 }}>Your keen!</h1>
           ) : (
-            <h1 style={{ fontSize: 38 }}>
-              PAIR A<br />
-              PORTRAIT
-            </h1>
+            <h1 style={{ fontSize: 38 }}>PAIR A PORTRAIT</h1>
           )}
           <SwirlSvg white />
-
           <Frame image={frame} style={{ width: "100%" }}>
             <Card
               portrait={portrait}

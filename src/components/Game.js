@@ -41,6 +41,7 @@ const AttemptsLeft = styled.div`
   text-transform: uppercase;
   color: white;
   padding: 30px;
+
 `;
 
 export default function Game() {
@@ -207,7 +208,7 @@ export default function Game() {
                   <>
                     <Frame
                       i={i}
-                      key={i}
+                      key={f}
                       image={f}
                       onClick={() => {
                         handleCardClick(i);

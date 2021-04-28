@@ -8,6 +8,7 @@ import plant from "../assets/images/room-assets/plant.png";
 import leaves from "../assets/images/room-assets/leaves.png";
 import clock from "../assets/images/room-assets/clock.png";
 import Terms from "./Terms";
+import LazyLoad from "react-lazy-load";
 
 const LayoutStyles = styled.main`
   background: #01263c;
@@ -18,6 +19,9 @@ const LayoutStyles = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 500px) {
+    padding-bottom: 30px;
+  }
   .furniture {
     position: absolute;
     display: block;
@@ -69,14 +73,15 @@ const LayoutStyles = styled.main`
 
 const ButtonFlex = styled.div`
   display: flex;
-  position: relative;
+  position: absolute;
+  bottom: 0;
   padding: 30px;
   align-items: center;
   justify-content: space-between;
   color: #fff;
   width: 100%;
-  align-self: flex-end;
-  justify-self: flex-end;
+  align-self: baseline;
+  justify-self: baseline;
   .controls {
     cursor: pointer;
     text-decoration: underline;
@@ -90,7 +95,9 @@ export default function Layout({ children }) {
     <>
       <Header />
       <LayoutStyles>
-        <img src={light} alt="" className="light-image furniture" />
+        <LazyLoad>
+          <img src={light} alt="" className="light-image furniture" />
+        </LazyLoad>
         <img src={chair} alt="" className="chair-image furniture hide-mobile" />
         <img src={clock} alt="" className="clock-image furniture hide-mobile" />
         <img
