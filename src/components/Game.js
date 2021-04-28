@@ -41,7 +41,6 @@ const AttemptsLeft = styled.div`
   text-transform: uppercase;
   color: white;
   padding: 30px;
-
 `;
 
 export default function Game() {
@@ -123,6 +122,7 @@ export default function Game() {
         type: "UPDATE_FIRST_PRIZE",
         first: "",
       });
+      saveToCookies();
       setFlipped([...flipped, i]);
       setTimeout(() => setFlipped([]), 500);
     } else if (firstPrize === shuffledPrizes[i]) {
