@@ -36,6 +36,8 @@ const global = css`
     width: 100%;
     padding: 15px;
     display: inline-block;
+    text-transform: uppercase;
+
     :hover {
       background: #000;
       color: white;
@@ -54,6 +56,7 @@ const global = css`
     color: #fff;
     padding: 15px;
     width: 100%;
+    text-transform: uppercase;
     :hover {
       background: #fff;
       color: #000;

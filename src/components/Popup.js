@@ -23,6 +23,9 @@ const PopupStyles = styled.div`
     background: var(--offwhite);
     overflow: scroll;
     text-align: center;
+    > * {
+      margin-bottom: 20px;
+    }
   }
 `;
 

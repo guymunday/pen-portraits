@@ -8,6 +8,7 @@ import reset from "./assets/styles/reset";
 import global from "./assets/styles/global";
 import Layout from "./components/Layout";
 import "./assets/styles/oldGame.css";
+import { Helmet } from "react-helmet";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -17,9 +18,12 @@ const GlobalStyle = createGlobalStyle`
 export default function Root() {
   return (
     <>
+      <Helmet>
+        <title>Penhaligon's Pair a Portrait</title>
+      </Helmet>
+      <GlobalStyle />
       <CookiesProvider>
         <GlobalProvider>
-          <GlobalStyle />
           <Layout>
             <App />
           </Layout>

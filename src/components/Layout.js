@@ -6,6 +6,7 @@ import light from "../assets/images/room-assets/light.png";
 import chair from "../assets/images/room-assets/chair.png";
 import plant from "../assets/images/room-assets/plant.png";
 import leaves from "../assets/images/room-assets/leaves.png";
+import clock from "../assets/images/room-assets/clock.png";
 import Terms from "./Terms";
 
 const LayoutStyles = styled.main`
@@ -17,20 +18,19 @@ const LayoutStyles = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   .furniture {
     position: absolute;
     display: block;
     transform: translate(-50%, 0);
-    width: 30%;
+    /* width: 30%; */
     max-width: 300px;
     &.light-image {
-      top: -20%;
+      top: -30%;
       left: 50%;
     }
     &.chair-image {
-      bottom: -20%;
-      right: -10%;
+      bottom: -18%;
+      right: -15%;
     }
     &.left-plant-image {
       bottom: -25%;
@@ -45,6 +45,16 @@ const LayoutStyles = styled.main`
       left: 10%;
       max-width: 400px;
       transform: translate(-50%, 0) scaleX(-1) rotate(30deg);
+    }
+    &.clock-image {
+      bottom: -8%;
+      left: 10%;
+      max-width: 220px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .hide-mobile {
+      display: none;
     }
   }
   .layout-gradient {
@@ -81,13 +91,26 @@ export default function Layout({ children }) {
       <Header />
       <LayoutStyles>
         <img src={light} alt="" className="light-image furniture" />
-        <img src={chair} alt="" className="chair-image furniture" />
-        <img src={plant} alt="" className="left-plant-image furniture" />
-        <img src={plant} alt="" className="right-plant-image furniture" />
-        <img src={leaves} alt="" className="left-leaves-image furniture" />
+        <img src={chair} alt="" className="chair-image furniture hide-mobile" />
+        <img src={clock} alt="" className="clock-image furniture hide-mobile" />
+        <img
+          src={plant}
+          alt=""
+          className="left-plant-image furniture hide-mobile"
+        />
+        <img
+          src={plant}
+          alt=""
+          className="right-plant-image furniture hide-mobile"
+        />
+        <img
+          src={leaves}
+          alt=""
+          className="left-leaves-image furniture hide-mobile"
+        />
         <div className="layout-gradient" />
         <div style={{ position: "relative" }}>{children}</div>
-        <ButtonFlex>
+        <ButtonFlex id="buttons">
           <div role="button" className="controls">
             Music
           </div>

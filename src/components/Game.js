@@ -43,8 +43,9 @@ const AttemptsLeft = styled.div`
   padding: 30px;
 `;
 
-export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
-  const [match, setMatch] = React.useState(false);
+export default function Game() {
+  const [newGame, setNewGame] = React.useState(false);
+  const [flipped, setFlipped] = React.useState([]);
   const { firstPrize, secondPrize, currentPrize } = useGameStateContext();
   const dispatch = useGameDispatchContext();
   const [cookies, setCookie] = useCookies(["playAttempts"]);
@@ -115,14 +116,12 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
         type: "UPDATE_FIRST_PRIZE",
         first: shuffledPrizes[i],
       });
-      setMatch(false);
       setFlipped([i]);
     } else if (firstPrize !== shuffledPrizes[i]) {
       dispatch({
         type: "UPDATE_FIRST_PRIZE",
         first: "",
       });
-      setMatch(false);
       setFlipped([...flipped, i]);
       setTimeout(() => setFlipped([]), 500);
     } else if (firstPrize === shuffledPrizes[i]) {
@@ -130,7 +129,6 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
         type: "UPDATE_SECOND_PRIZE",
         second: shuffledPrizes[i],
       });
-      setMatch(true);
       setFlipped([...flipped, i]);
       saveToCookies();
     }
