@@ -38,14 +38,7 @@ const FrameStyles = styled.div`
   }
 `;
 
-export default function Frame({
-  i,
-  image,
-  children,
-  loaded,
-  setLoaded,
-  ...rest
-}) {
+export default function Frame({ i, image, children, ...rest }) {
   return (
     <>
       <FrameStyles className="card" {...rest}>
@@ -54,13 +47,7 @@ export default function Frame({
           style={{ borderRadius: i === 0 || i === 6 ? "50%" : "0px" }}
         />
         <div className="frame-inner">{children}</div>
-        <img
-          className="frame-image"
-          src={image}
-          alt="Portrait frame"
-          style={{ visibility: loaded ? "visible" : "hidden" }}
-          onLoad={() => setLoaded(true)}
-        />
+        <img className="frame-image" src={image} alt="Portrait frame" />
       </FrameStyles>
     </>
   );

@@ -33,6 +33,9 @@ const global = css`
     font-size: 1rem;
     border: 1px solid #000;
     transition: 0.3s ease;
+    width: 100%;
+    padding: 15px;
+    display: inline-block;
     :hover {
       background: #000;
       color: white;

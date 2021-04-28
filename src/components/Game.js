@@ -48,8 +48,8 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
   const { firstPrize, secondPrize, currentPrize } = useGameStateContext();
   const dispatch = useGameDispatchContext();
   const [cookies, setCookie] = useCookies(["playAttempts"]);
-  const [loaded, setLoaded] = React.useState(false);
-  const [imgsLoaded, setImgsLoaded] = React.useState(false);
+  const [framesLoaded, setFramesLoaded] = React.useState(false);
+  const [portraitsLoaded, setPortraitsLoaded] = React.useState(false);
 
   const shuffleCards = () => {
     const cardSelector = document.querySelectorAll(".card");
@@ -59,7 +59,7 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
     }
   };
 
-  React.useEffect(() => {
+  const shuffleAndAnimate = () => {
     shuffleCards();
 
     let tl = gsap.timeline();
@@ -81,7 +81,15 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
       },
       "<"
     );
-  }, [imgsLoaded]);
+  };
+
+  React.useEffect(() => {
+    shuffleAndAnimate();
+  }, [framesLoaded, portraitsLoaded]);
+
+  React.useEffect(() => {
+    shuffleAndAnimate();
+  }, [newGame]);
 
   const saveToCookies = () => {
     let tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
@@ -164,19 +172,11 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
     }
   }, [firstPrize, secondPrize]);
 
-  // React.useEffect(() => {
-  //   if (match) {
-  //     console.log(currentPrize);
-  //   }
-  // }, [currentPrize]);
-
   React.useEffect(() => {
     const loadImage = (image) => {
       return new Promise((resolve, reject) => {
         const loadImg = new Image();
         loadImg.src = image;
-        console.log(loadImg.src);
-        // wait 2 seconds to simulate loading time
         loadImg.onload = () =>
           setTimeout(() => {
             resolve(image);
@@ -187,53 +187,59 @@ export default function Game({ newGame, setNewGame, flipped, setFlipped }) {
     };
 
     Promise.all(frames.map((image) => loadImage(image)))
-      .then(() => setImgsLoaded(true))
+      .then(() => setFramesLoaded(true))
+      .catch((err) => console.log("Failed to load images", err));
+
+    Promise.all(portraits.map((image) => loadImage(image)))
+      .then(() => setPortraitsLoaded(true))
       .catch((err) => console.log("Failed to load images", err));
   }, []);
 
+  React.useEffect(() => {}, []);
+
   return (
     <>
-      {loaded && <Title>Pair a portrait</Title>}
-      <FrameLayout>
-        <div className="frames-inner">
-          {imgsLoaded ? (
-            frames.map((f, i) => {
-              return (
-                <>
-                  <Frame
-                    i={i}
-                    key={i}
-                    image={f}
-                    loaded={loaded}
-                    setLoaded={setLoaded}
-                    onClick={() => {
-                      handleCardClick(i);
-                    }}
-                  >
-                    <Card
-                      portrait={portraits[i]}
-                      prize={shuffledPrizes[i]}
-                      flipped={flipped}
+      {portraitsLoaded && framesLoaded ? (
+        <>
+          <Title>Pair a portrait</Title>
+          <FrameLayout>
+            <div className="frames-inner">
+              {frames.map((f, i) => {
+                return (
+                  <>
+                    <Frame
                       i={i}
-                    />
-                  </Frame>
-                </>
-              );
-            })
-          ) : (
-            <h1>Loading...</h1>
-          )}
-        </div>
-      </FrameLayout>
-      {loaded && (
-        <AttemptsLeft>
-          Attempts{" "}
-          <span style={{ fontSize: "1.6rem", margin: "0 20px" }}>
-            {cookies.playAttempts ? cookies.playAttempts : 5}/5
-          </span>{" "}
-          Remaining
-        </AttemptsLeft>
+                      key={i}
+                      image={f}
+                      onClick={() => {
+                        handleCardClick(i);
+                      }}
+                    >
+                      <Card
+                        portrait={portraits[i]}
+                        prize={shuffledPrizes[i]}
+                        flipped={flipped}
+                        i={i}
+                      />
+                    </Frame>
+                  </>
+                );
+              })}
+            </div>
+          </FrameLayout>
+
+          <AttemptsLeft>
+            Attempts{" "}
+            <span style={{ fontSize: "1.6rem", margin: "0 20px" }}>
+              {cookies.playAttempts ? cookies.playAttempts : 5}/5
+            </span>{" "}
+            Remaining
+          </AttemptsLeft>
+        </>
+      ) : (
+        <h1 style={{ color: "white" }}>Loading...</h1>
       )}
+
       {parseInt(cookies.playAttempts) === 0 && !currentPrize && <MaxAttempts />}
       {currentPrize && (
         <Winner

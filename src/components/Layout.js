@@ -65,6 +65,8 @@ const ButtonFlex = styled.div`
   justify-content: space-between;
   color: #fff;
   width: 100%;
+  align-self: flex-end;
+  justify-self: flex-end;
   .controls {
     cursor: pointer;
     text-decoration: underline;

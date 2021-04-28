@@ -19,7 +19,9 @@ export default function MaxAttempts() {
             <SwirlSvg />
             <p>You didn’t find a match, come back tomorrow to try again.</p>
             <img src={roundBackup} alt="" />
-            <button>Continue Shopping</button>
+            <a className="button" href="https://www.penhaligons.com/uk/en">
+              Continue Shopping
+            </a>
           </>
         )}
         {previousPrize && !showTerms && (
