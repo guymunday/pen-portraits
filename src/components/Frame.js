@@ -38,10 +38,10 @@ const FrameStyles = styled.div`
   }
 `;
 
-export default function Frame({ i, image, children, ...rest }) {
+export default function Frame({ i, prize, image, children, ...rest }) {
   return (
     <>
-      <FrameStyles className="card" {...rest}>
+      <FrameStyles className={`card`} {...rest}>
         <div
           className="frame-offwhite"
           style={{ borderRadius: i === 0 || i === 6 ? "50%" : "0px" }}

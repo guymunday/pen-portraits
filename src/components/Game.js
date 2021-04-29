@@ -26,7 +26,6 @@ const FrameLayout = styled.div`
   max-width: 1200px;
   margin: auto;
   position: relative;
-
   .frames-inner {
     width: 100%;
     display: flex;
@@ -195,8 +194,6 @@ export default function Game() {
       .catch((err) => console.log("Failed to load images", err));
   }, []);
 
-  React.useEffect(() => {}, []);
-
   return (
     <>
       {portraitsLoaded && framesLoaded ? (
@@ -211,6 +208,7 @@ export default function Game() {
                       i={i}
                       key={f}
                       image={f}
+                      prize={shuffledPrizes[i]}
                       onClick={() => {
                         handleCardClick(i);
                       }}
