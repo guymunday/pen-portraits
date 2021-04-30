@@ -16,6 +16,12 @@ export default function MaxAttempts() {
     finishGameAndPrize(previousPrize.prizeId);
   };
 
+  React.useEffect(() => {
+    if (!previousPrize) {
+      finishGameAndPrize("previousPrize.prizeId");
+    }
+  });
+
   return (
     <>
       <Popup>

@@ -4,11 +4,9 @@ export const isGameLive = () => {
   axios
     .get("https://portrait.wildishandco.co.uk/api/v1/content")
     .then(function (response) {
-      // handle success
       console.log(response);
     })
     .catch(function (error) {
-      // handle error
       console.log(error);
     })
     .then(function () {
