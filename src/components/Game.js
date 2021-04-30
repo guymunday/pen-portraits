@@ -142,9 +142,17 @@ export default function Game() {
           type: "UPDATE_PRIZE",
           prize: prizes[0],
         });
+        dispatch({
+          type: "UPDATE_BACKUP_PRIZE",
+          prize: prizes[0],
+        });
       } else if (secondPrize.includes("helen")) {
         dispatch({
           type: "UPDATE_PRIZE",
+          prize: prizes[1],
+        });
+        dispatch({
+          type: "UPDATE_BACKUP_PRIZE",
           prize: prizes[1],
         });
       } else if (secondPrize.includes("matthew")) {
@@ -152,9 +160,17 @@ export default function Game() {
           type: "UPDATE_PRIZE",
           prize: prizes[2],
         });
+        dispatch({
+          type: "UPDATE_BACKUP_PRIZE",
+          prize: prizes[2],
+        });
       } else if (secondPrize.includes("mr-sam")) {
         dispatch({
           type: "UPDATE_PRIZE",
+          prize: prizes[3],
+        });
+        dispatch({
+          type: "UPDATE_BACKUP_PRIZE",
           prize: prizes[3],
         });
       } else if (secondPrize.includes("sohan")) {
@@ -162,9 +178,17 @@ export default function Game() {
           type: "UPDATE_PRIZE",
           prize: prizes[4],
         });
+        dispatch({
+          type: "UPDATE_BACKUP_PRIZE",
+          prize: prizes[4],
+        });
       } else if (secondPrize.includes("teddy")) {
         dispatch({
           type: "UPDATE_PRIZE",
+          prize: prizes[5],
+        });
+        dispatch({
+          type: "UPDATE_BACKUP_PRIZE",
           prize: prizes[5],
         });
       }

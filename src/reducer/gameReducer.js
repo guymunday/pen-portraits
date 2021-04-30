@@ -10,31 +10,37 @@ import prize6 from "../assets/images/prizes/teddy.png";
 export const prizes = [
   {
     prizeName: "beauregard",
+    prizeId: "PRIZE1",
     prizeImage: prize1,
     prizeApiUrl: "www.penhaligons.com",
   },
   {
     prizeName: "helen",
+    prizeId: "PRIZE2",
     prizeImage: prize2,
     prizeApiUrl: "www.penhaligons.com",
   },
   {
     prizeName: "matthew",
+    prizeId: "PRIZE3",
     prizeImage: prize3,
     prizeApiUrl: "www.penhaligons.com",
   },
   {
     prizeName: "mr sam",
+    prizeId: "PRIZE4",
     prizeImage: prize4,
     prizeApiUrl: "www.penhaligons.com",
   },
   {
     prizeName: "sohan",
+    prizeId: "PRIZE5",
     prizeImage: prize5,
     prizeApiUrl: "www.penhaligons.com",
   },
   {
     prizeName: "teddy",
+    prizeId: "PRIZE6",
     prizeImage: prize6,
     prizeApiUrl: "www.penhaligons.com",
   },

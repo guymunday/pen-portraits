@@ -4,6 +4,7 @@ import SwirlSvg from "./SwirlSvg";
 import { useGameStateContext } from "../reducer/gameReducer";
 import roundBackup from "../assets/images/frames/round-backup.png";
 import Terms from "./Terms";
+import { finishGameAndPrize } from "../actions/api";
 
 export default function MaxAttempts() {
   const { previousPrize } = useGameStateContext();
@@ -12,6 +13,7 @@ export default function MaxAttempts() {
 
   const handleAddToBasket = () => {
     setAddToBasket(true);
+    finishGameAndPrize(previousPrize.prizeId);
   };
 
   return (

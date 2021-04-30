@@ -9,6 +9,7 @@ import Frame from "./Frame";
 import Card from "./Card";
 import prize from "../assets/images/prizes/matthew.png";
 import { gsap } from "gsap";
+import { newGameStarted } from "../actions/api";
 
 const HomeStyles = styled.div`
   color: white;
@@ -49,7 +50,8 @@ export default function Home() {
           <SwirlSvg white />
           <Link
             style={{ display: "inline-block" }}
-            to={parseInt(cookies.playAttempts) === 0 ? "" :"/play" }
+            to={parseInt(cookies.playAttempts) === 0 ? "" : "/play"}
+            onClick={newGameStarted}
           >
             <Frame image={frame} style={{ width: "100%" }}>
               <Card
@@ -81,7 +83,7 @@ export default function Home() {
               Continue shopping
             </a>
           ) : (
-            <Link className="button-alt" to="/play">
+            <Link className="button-alt" to="/play" onClick={newGameStarted}>
               Play
             </Link>
           )}

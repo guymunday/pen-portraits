@@ -6,9 +6,10 @@ import {
 import Popup from "./Popup";
 import SwirlSvg from "./SwirlSvg";
 import Terms from "./Terms";
+import { finishGameAndPrize } from "../actions/api";
 
 export default function Winner({ newGame, setNewGame, setFlipped }) {
-  const { currentPrize } = useGameStateContext();
+  const { currentPrize, previousPrize } = useGameStateContext();
   const dispatch = useGameDispatchContext();
   const [showTerms, setShowTerms] = React.useState(false);
   const [addToBasket, setAddToBasket] = React.useState(false);
@@ -23,10 +24,6 @@ export default function Winner({ newGame, setNewGame, setFlipped }) {
       second: "",
     });
     dispatch({
-      type: "UPDATE_BACKUP_PRIZE",
-      prize: currentPrize,
-    });
-    dispatch({
       type: "UPDATE_PRIZE",
       prize: "",
     });
@@ -36,6 +33,7 @@ export default function Winner({ newGame, setNewGame, setFlipped }) {
 
   const handleAddToBasket = () => {
     setAddToBasket(true);
+    finishGameAndPrize(previousPrize.prizeId);
   };
 
   return (
