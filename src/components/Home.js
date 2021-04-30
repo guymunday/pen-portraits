@@ -9,7 +9,9 @@ import Frame from "./Frame";
 import Card from "./Card";
 import prize from "../assets/images/prizes/matthew.png";
 import { gsap } from "gsap";
-import { finishGameAndPrize, lostGame, newGameStarted } from "../actions/api";
+import { newGameStarted } from "../actions/api";
+
+gsap.config({ nullTargetWarn: false });
 
 const HomeStyles = styled.div`
   color: white;

@@ -20,9 +20,6 @@ export default function App() {
       })
       .catch(function (error) {
         console.log(error);
-      })
-      .then(function () {
-        console.log("success");
       });
   };
 
