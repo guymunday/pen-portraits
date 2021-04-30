@@ -18,7 +18,7 @@ export default function MaxAttempts() {
 
   React.useEffect(() => {
     if (!previousPrize) {
-      finishGameAndPrize("lost");
+      finishGameAndPrize("LOST");
     }
   });
 
