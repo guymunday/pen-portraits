@@ -7,18 +7,18 @@ import Terms from "./Terms";
 import { finishGameAndPrize } from "../actions/api";
 
 export default function MaxAttempts() {
-  const { previousPrize } = useGameStateContext();
+  const { previousPrize, id } = useGameStateContext();
   const [showTerms, setShowTerms] = React.useState(false);
   const [addToBasket, setAddToBasket] = React.useState(false);
 
   const handleAddToBasket = () => {
     setAddToBasket(true);
-    finishGameAndPrize(previousPrize.prizeId);
+    finishGameAndPrize(id, previousPrize.prizeId);
   };
 
   React.useEffect(() => {
     if (!previousPrize) {
-      finishGameAndPrize("LOST");
+      finishGameAndPrize(id, "LOST");
     }
   });
 

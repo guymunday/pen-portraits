@@ -12,6 +12,7 @@ import {
 } from "../reducer/gameReducer";
 import { useCookies } from "react-cookie";
 import MaxAttempts from "./MaxAttempts";
+import axios from "axios";
 
 const Title = styled.h1`
   display: block;
@@ -52,6 +53,22 @@ export default function Game() {
   const [framesLoaded, setFramesLoaded] = React.useState(false);
   const [portraitsLoaded, setPortraitsLoaded] = React.useState(false);
 
+  const newGameStarted = () => {
+    axios
+      .post("https://portrait.wildishandco.co.uk/api/v1/start", {
+        try: 1,
+      })
+      .then(function (response) {
+        dispatch({
+          type: "UPDATE_ID",
+          id: response.data.data.id,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   const shuffleCards = () => {
     const cardSelector = document.querySelectorAll(".card");
     for (let x = 0; x < cardSelector.length; x++) {
@@ -62,7 +79,6 @@ export default function Game() {
 
   const shuffleAndAnimate = () => {
     shuffleCards();
-
     let tl = gsap.timeline();
 
     tl.from(".card", {
@@ -117,6 +133,7 @@ export default function Game() {
         first: shuffledPrizes[i],
       });
       setFlipped([i]);
+      newGameStarted();
     } else if (firstPrize !== shuffledPrizes[i]) {
       dispatch({
         type: "UPDATE_FIRST_PRIZE",

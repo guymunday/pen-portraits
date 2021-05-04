@@ -9,7 +9,7 @@ import Terms from "./Terms";
 import { finishGameAndPrize } from "../actions/api";
 
 export default function Winner({ newGame, setNewGame, setFlipped }) {
-  const { currentPrize, previousPrize } = useGameStateContext();
+  const { currentPrize, previousPrize, id } = useGameStateContext();
   const dispatch = useGameDispatchContext();
   const [showTerms, setShowTerms] = React.useState(false);
   const [addToBasket, setAddToBasket] = React.useState(false);
@@ -33,7 +33,7 @@ export default function Winner({ newGame, setNewGame, setFlipped }) {
 
   const handleAddToBasket = () => {
     setAddToBasket(true);
-    finishGameAndPrize(previousPrize.prizeId);
+    finishGameAndPrize(id, previousPrize.prizeId);
   };
 
   return (
