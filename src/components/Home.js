@@ -50,7 +50,7 @@ export default function Home() {
         <div className="home-inner">
           <SwirlSvg white />
           {parseInt(cookies.playAttempts) === 0 ? (
-            <h1 style={{ fontSize: 38 }}>Your keen!</h1>
+            <h1 style={{ fontSize: 38 }}>You're keen!</h1>
           ) : (
             <h1 style={{ fontSize: 38 }}>PAIR A PORTRAIT</h1>
           )}
@@ -58,7 +58,6 @@ export default function Home() {
           <Link
             style={{ display: "inline-block" }}
             to={parseInt(cookies.playAttempts) === 0 ? "" : "/play"}
-
           >
             <Frame image={frame} style={{ width: "100%" }}>
               <Card
@@ -90,7 +89,7 @@ export default function Home() {
               Continue shopping
             </a>
           ) : (
-            <Link className="button-alt" to="/play" >
+            <Link className="button-alt" to="/play">
               Play
             </Link>
           )}
