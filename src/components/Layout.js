@@ -8,6 +8,8 @@ import plant from "../assets/images/room-assets/plant.png";
 import leaves from "../assets/images/room-assets/leaves.png";
 import clock from "../assets/images/room-assets/clock.png";
 import Terms from "./Terms";
+import music from "../assets/music.mp3";
+import { VolumeMute, VolumeUp } from "@styled-icons/material";
 
 const LayoutStyles = styled.main`
   background: #01263c;
@@ -89,6 +91,8 @@ const ButtonFlex = styled.div`
 
 export default function Layout({ children }) {
   const [showTerms, setShowTerms] = React.useState(false);
+  const audioRef = React.useRef(null);
+  const [audioPlaying, setAudioPlaying] = React.useState(true);
 
   return (
     <>
@@ -115,8 +119,22 @@ export default function Layout({ children }) {
         <div className="layout-gradient" />
         <div style={{ position: "relative" }}>{children}</div>
         <ButtonFlex id="buttons">
-          <div role="button" className="controls">
-            Music
+          <div
+            role="button"
+            className="controls"
+            onClick={() => {
+              audioRef?.current?.paused
+                ? audioRef.current.play()
+                : audioRef.current.pause();
+
+              setAudioPlaying(!audioPlaying);
+            }}
+          >
+            {!audioPlaying ? (
+              <VolumeMute style={{ height: 40 }} />
+            ) : (
+              <VolumeUp style={{ height: 40 }} />
+            )}
           </div>
           <div
             role="button"
@@ -129,6 +147,7 @@ export default function Layout({ children }) {
       </LayoutStyles>
       <Footer />
       {showTerms && <Terms setShowTerms={setShowTerms} />}
+      <audio ref={audioRef} autoPlay src={music} />
     </>
   );
 }

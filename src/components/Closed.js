@@ -18,7 +18,7 @@ export default function Closed() {
           tellus, sagittis vitae mauris et, molestie ultricies nisl. Quisque non
           purus sollicitudin tellus semper rutrum.
         </p>
-        <img src={frameImage} alt />
+        <img src={frameImage} alt="" />
         <a className="button" href="https://www.penhaligons.com/uk/en">
           Continue Shopping
         </a>

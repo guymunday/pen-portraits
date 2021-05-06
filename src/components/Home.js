@@ -9,12 +9,6 @@ import Frame from "./Frame";
 import Card from "./Card";
 import prize from "../assets/images/prizes/matthew.png";
 import { gsap } from "gsap";
-import axios from "axios";
-import {
-  useGameStateContext,
-  useGameDispatchContext,
-  prizes,
-} from "../reducer/gameReducer";
 
 gsap.config({ nullTargetWarn: false });
 
@@ -95,7 +89,7 @@ export default function Home() {
           )}
           <SwirlSvg white />
           <p>
-            Your prize will be added to your basket with an order of £140 or
+            Your prize will be added to your basket with an order of £150 or
             more. Limited to 3 plays per day. Peruse the full terms and
             conditions.
           </p>

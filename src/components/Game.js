@@ -13,6 +13,7 @@ import {
 import { useCookies } from "react-cookie";
 import MaxAttempts from "./MaxAttempts";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 const Title = styled.h1`
   display: block;
@@ -154,7 +155,7 @@ export default function Game() {
 
   React.useEffect(() => {
     if (firstPrize === secondPrize) {
-      if (secondPrize.includes("beauregard")) {
+      if (secondPrize.includes("teddy")) {
         dispatch({
           type: "UPDATE_PRIZE",
           prize: prizes[0],
@@ -181,7 +182,7 @@ export default function Game() {
           type: "UPDATE_BACKUP_PRIZE",
           prize: prizes[2],
         });
-      } else if (secondPrize.includes("mr-sam")) {
+      } else if (secondPrize.includes("flora")) {
         dispatch({
           type: "UPDATE_PRIZE",
           prize: prizes[3],
@@ -190,7 +191,7 @@ export default function Game() {
           type: "UPDATE_BACKUP_PRIZE",
           prize: prizes[3],
         });
-      } else if (secondPrize.includes("sohan")) {
+      } else if (secondPrize.includes("radcliff")) {
         dispatch({
           type: "UPDATE_PRIZE",
           prize: prizes[4],
@@ -199,7 +200,7 @@ export default function Game() {
           type: "UPDATE_BACKUP_PRIZE",
           prize: prizes[4],
         });
-      } else if (secondPrize.includes("teddy")) {
+      } else if (secondPrize.includes("beauregard")) {
         dispatch({
           type: "UPDATE_PRIZE",
           prize: prizes[5],

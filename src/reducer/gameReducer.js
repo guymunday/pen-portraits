@@ -1,41 +1,47 @@
 import * as React from "react";
 import { createContext, useReducer, useContext } from "react";
-import prize1 from "../assets/images/prizes/beauregard.png";
+import prize1 from "../assets/images/prizes/teddy.png";
 import prize2 from "../assets/images/prizes/helen.png";
 import prize3 from "../assets/images/prizes/matthew.png";
-import prize4 from "../assets/images/prizes/mr-sam.png";
-import prize5 from "../assets/images/prizes/sohan.png";
-import prize6 from "../assets/images/prizes/teddy.png";
+import prize4 from "../assets/images/prizes/flora.png";
+import prize5 from "../assets/images/prizes/radcliff.png";
+import prize6 from "../assets/images/prizes/beauregard.png";
 
 export const prizes = [
   {
-    prizeName: "beauregard",
+    prizeName: "I say! You have won Terrible Teddy worth £204",
     prizeId: "PRIZE1",
+    penId: "PLAY1",
     prizeImage: prize1,
   },
   {
-    prizeName: "helen",
+    prizeName: "I say! You have won Heartless Helen worth £204",
     prizeId: "PRIZE2",
+    penId: "PLAY2",
     prizeImage: prize2,
   },
   {
-    prizeName: "matthew",
+    prizeName: "I say! You have won Cousin Matthew worth £204",
     prizeId: "PRIZE3",
+    penId: "PLAY3",
     prizeImage: prize3,
   },
   {
-    prizeName: "mr sam",
+    prizeName: "I say! You have won Cousin Flora, worth £204",
     prizeId: "PRIZE4",
+    penId: "PLAY4",
     prizeImage: prize4,
   },
   {
-    prizeName: "sohan",
+    prizeName: "I say! You have won Roaring Radcliffe worth £204",
     prizeId: "PRIZE5",
+    penId: "PLAY5",
     prizeImage: prize5,
   },
   {
-    prizeName: "teddy",
+    prizeName: "I say! You have won Monsiuer Beauregard worth £204",
     prizeId: "PRIZE6",
+    penId: "PLAY6",
     prizeImage: prize6,
   },
 ];

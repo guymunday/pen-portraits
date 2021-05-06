@@ -27,12 +27,12 @@ import portrait4 from "./images/portraits/portrait-4.png";
 import portrait6 from "./images/portraits/portrait-6.png";
 
 // Prizes Images
-import prize1 from "./images/prizes/beauregard.png";
+import prize1 from "./images/prizes/teddy.png";
 import prize2 from "./images/prizes/helen.png";
 import prize3 from "./images/prizes/matthew.png";
-import prize4 from "./images/prizes/mr-sam.png";
-import prize5 from "./images/prizes/sohan.png";
-import prize6 from "./images/prizes/teddy.png";
+import prize4 from "./images/prizes/flora.png";
+import prize5 from "./images/prizes/radcliff.png";
+import prize6 from "./images/prizes/beauregard.png";
 
 export const frames = [
   frame1,
