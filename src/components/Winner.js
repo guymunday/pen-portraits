@@ -68,9 +68,11 @@ export default function Winner({ newGame, setNewGame, setFlipped }) {
             />
             {!formSubmitted && (
               <>
-                <button onClick={handleNewGame}>
-                  {cookies.playAttempts} tries left
-                </button>
+                {parseInt(cookies.playAttempts) > 0 && (
+                  <button onClick={handleNewGame}>
+                    {cookies.playAttempts} tries left
+                  </button>
+                )}
                 <p>
                   Your prize will be added to your basket with an order of £150
                   or more. Limited to 5 plays per day.{" "}

@@ -87,6 +87,12 @@ const gameReducer = (state, action) => {
         secondPrize: action.second,
       };
     }
+    case "UPDATE_AUDIO": {
+      return {
+        ...state,
+        audio: action.audio,
+      };
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }

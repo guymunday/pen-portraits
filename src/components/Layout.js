@@ -10,6 +10,10 @@ import clock from "../assets/images/room-assets/clock.png";
 import Terms from "./Terms";
 import music from "../assets/music.mp3";
 import { VolumeMute, VolumeUp } from "@styled-icons/material";
+import {
+  useGameDispatchContext,
+  useGameStateContext,
+} from "../reducer/gameReducer";
 
 const LayoutStyles = styled.main`
   background: #01263c;
@@ -92,7 +96,30 @@ const ButtonFlex = styled.div`
 export default function Layout({ children }) {
   const [showTerms, setShowTerms] = React.useState(false);
   const audioRef = React.useRef(null);
-  const [audioPlaying, setAudioPlaying] = React.useState(true);
+  const [audioPlaying, setAudioPlaying] = React.useState(false);
+  const { audio } = useGameStateContext();
+  const dispatch = useGameDispatchContext();
+
+  const handleAudio = () => {
+    if (!audio) {
+      audioRef.current.play();
+      dispatch({ type: "UPDATE_AUDIO", audio: 1 });
+    } else {
+      audioRef.current.pause();
+      dispatch({ type: "UPDATE_AUDIO", audio: null });
+    }
+    setAudioPlaying(!audioPlaying);
+  };
+
+  React.useEffect(() => {
+    if (audio) {
+      audioRef.current.play();
+      setAudioPlaying(true);
+    } else {
+      audioRef.current.pause();
+      setAudioPlaying(false);
+    }
+  }, [audio]);
 
   return (
     <>
@@ -119,22 +146,15 @@ export default function Layout({ children }) {
         <div className="layout-gradient" />
         <div style={{ position: "relative" }}>{children}</div>
         <ButtonFlex id="buttons">
-          <div
-            role="button"
-            className="controls"
-            onClick={() => {
-              audioRef?.current?.paused
-                ? audioRef.current.play()
-                : audioRef.current.pause();
-
-              setAudioPlaying(!audioPlaying);
-            }}
-          >
+          <div role="button" className="controls" onClick={handleAudio}>
             {!audioPlaying ? (
               <VolumeMute style={{ height: 40 }} />
             ) : (
               <VolumeUp style={{ height: 40 }} />
             )}
+            <audio ref={audioRef} loop>
+              <source src={music} type="audio/mpeg" />
+            </audio>
           </div>
           <div
             role="button"
@@ -147,7 +167,6 @@ export default function Layout({ children }) {
       </LayoutStyles>
       <Footer />
       {showTerms && <Terms setShowTerms={setShowTerms} />}
-      <audio ref={audioRef} autoPlay src={music} />
     </>
   );
 }

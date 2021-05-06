@@ -1,21 +1,12 @@
 import * as React from "react";
 import Game from "./components/Game";
-import {
-  Switch,
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Closed from "./components/Closed";
 import axios from "axios";
-import { useCookies } from "react-cookie";
-import { useGameStateContext } from "./reducer/gameReducer";
 
 export default function App() {
   const [gameClosed, setGameClosed] = React.useState(false);
-  const [cookies] = useCookies([]);
-  const { previousPrize } = useGameStateContext();
 
   const isGameLive = () => {
     axios

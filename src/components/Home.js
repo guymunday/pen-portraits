@@ -9,6 +9,7 @@ import Frame from "./Frame";
 import Card from "./Card";
 import prize from "../assets/images/prizes/matthew.png";
 import { gsap } from "gsap";
+import { useGameDispatchContext } from "../reducer/gameReducer";
 
 gsap.config({ nullTargetWarn: false });
 
@@ -27,6 +28,7 @@ const HomeStyles = styled.div`
 export default function Home() {
   const [cookies] = useCookies([]);
   const [index, setIndex] = React.useState(0);
+  const dispatch = useGameDispatchContext();
 
   React.useEffect(() => {
     let tl = gsap.timeline({ repeat: -1 });
@@ -83,7 +85,11 @@ export default function Home() {
               Continue shopping
             </a>
           ) : (
-            <Link className="button-alt" to="/play">
+            <Link
+              className="button-alt"
+              to="/play"
+              onClick={() => dispatch({ type: "UPDATE_AUDIO", audio: 1 })}
+            >
               Play
             </Link>
           )}
