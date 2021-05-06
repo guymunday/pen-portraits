@@ -54,6 +54,7 @@ export default function Home() {
           <Link
             style={{ display: "inline-block" }}
             to={parseInt(cookies.playAttempts) === 0 ? "" : "/play"}
+            onClick={() => dispatch({ type: "UPDATE_AUDIO", audio: 1 })}
           >
             <Frame image={frame} style={{ width: "100%" }}>
               <Card
