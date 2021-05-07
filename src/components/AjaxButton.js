@@ -19,7 +19,7 @@ export default function AjaxButton({ setFormSubmitted, prize, ...rest }) {
         ref={formRef}
         {...rest}
       >
-        <input type="hidden" name="userScore" value="0" />
+        <input type="hidden" name="userScore" value="1" />
         <input type="hidden" name="userAttempts" value="1" />
         <input type="hidden" name="userPrize" value={prize} />
         <button type="submit" onClick={(e) => handleFormSubmit(e)}>
