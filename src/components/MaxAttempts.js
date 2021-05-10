@@ -3,14 +3,12 @@ import Popup from "./Popup";
 import SwirlSvg from "./SwirlSvg";
 import { useGameStateContext } from "../reducer/gameReducer";
 import roundBackup from "../assets/images/frames/round-backup.png";
-import Terms from "./Terms";
 import { finishGameAndPrize } from "../actions/api";
 import AjaxButton from "./AjaxButton";
 import { Redirect } from "react-router";
 
 export default function MaxAttempts() {
   const { previousPrize, id } = useGameStateContext();
-  const [showTerms, setShowTerms] = React.useState(false);
   const [formSubmitted, setFormSubmitted] = React.useState(false);
 
   const handleAddToBasket = () => {
@@ -41,7 +39,7 @@ export default function MaxAttempts() {
             </a>
           </>
         )}
-        {previousPrize && !showTerms && (
+        {previousPrize && (
           <>
             {!formSubmitted ? (
               <h2>
@@ -50,7 +48,7 @@ export default function MaxAttempts() {
                 You used your last attempt and didn’t win.
               </h2>
             ) : (
-              <h2>Prize added to basket</h2>
+              <h2>Prize added to bag</h2>
             )}
             <SwirlSvg />
             <img src={previousPrize.prizeImage} alt={previousPrize.prizeName} />
@@ -58,8 +56,8 @@ export default function MaxAttempts() {
               <h3>Have no fear, you still win the last prize you matched.</h3>
             ) : (
               <h3>
-                Your prize has been added to the basket. You will see it your
-                basket when you spend a minimum of £150.
+                Your prize has been added to the bag. You will see it your bag
+                when you spend a minimum of £150.
               </h3>
             )}
             <AjaxButton
@@ -70,21 +68,20 @@ export default function MaxAttempts() {
             />
             {!formSubmitted && (
               <p>
-                Your prize will be added to your basket with an order of £150 or
-                more. Limited to 5 plays per day.{" "}
-                <span
+                Your prize will be added to your bag with an order of £150 or
+                more. Limited to 7 plays per day.{" "}
+                <a
                   style={{ textDecoration: "underline" }}
-                  role="button"
-                  onClick={() => setShowTerms(!showTerms)}
+                  href="https://www.penhaligons.com/uk/en/game-official-regulation"
+                  target="_blank"
                 >
                   Peruse the full terms and conditions.
-                </span>
+                </a>
               </p>
             )}
           </>
         )}
       </Popup>
-      {showTerms && <Terms setShowTerms={setShowTerms} />}
     </>
   );
 }

@@ -48,7 +48,7 @@ const AttemptsLeft = styled.div`
 export default function Game() {
   const [newGame, setNewGame] = React.useState(false);
   const [flipped, setFlipped] = React.useState([]);
-  const { firstPrize, secondPrize, currentPrize } = useGameStateContext();
+  const { firstPrize, secondPrize, currentPrize, id } = useGameStateContext();
   const dispatch = useGameDispatchContext();
   const [cookies, setCookie] = useCookies(["playAttempts"]);
   const [framesLoaded, setFramesLoaded] = React.useState(false);
@@ -113,7 +113,7 @@ export default function Game() {
     let tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
 
     if (!cookies.playAttempts) {
-      setCookie("playAttempts", "4", { path: "/", expires: tomorrow });
+      setCookie("playAttempts", "6", { path: "/", expires: tomorrow });
     } else {
       let attempts = parseInt(cookies.playAttempts) - 1;
       setCookie("playAttempts", attempts.toString(), {
@@ -134,7 +134,6 @@ export default function Game() {
         first: shuffledPrizes[i],
       });
       setFlipped([i]);
-      newGameStarted();
     } else if (firstPrize !== shuffledPrizes[i]) {
       dispatch({
         type: "UPDATE_FIRST_PRIZE",
@@ -236,6 +235,10 @@ export default function Game() {
       .catch((err) => console.log("Failed to load images", err));
   }, []);
 
+  if (!id) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <>
       {portraitsLoaded && framesLoaded ? (
@@ -271,7 +274,7 @@ export default function Game() {
           <AttemptsLeft>
             Attempts{" "}
             <span style={{ fontSize: "1.6rem", margin: "0 20px" }}>
-              {cookies.playAttempts ? cookies.playAttempts : 5}/5
+              {cookies.playAttempts ? cookies.playAttempts : 7}/7
             </span>{" "}
             Remaining
           </AttemptsLeft>

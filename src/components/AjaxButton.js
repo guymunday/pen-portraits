@@ -23,7 +23,7 @@ export default function AjaxButton({ setFormSubmitted, prize, ...rest }) {
         <input type="hidden" name="userAttempts" value="1" />
         <input type="hidden" name="userPrize" value={prize} />
         <button type="submit" onClick={(e) => handleFormSubmit(e)}>
-          Add to basket
+          Add to bag
         </button>
       </form>
     </>

@@ -2,12 +2,12 @@ import * as React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import styled from "styled-components";
+import background from "../assets/images/pen-background-compressed.jpg";
 import light from "../assets/images/room-assets/light.png";
 import chair from "../assets/images/room-assets/chair.png";
 import plant from "../assets/images/room-assets/plant.png";
 import leaves from "../assets/images/room-assets/leaves.png";
 import clock from "../assets/images/room-assets/clock.png";
-import Terms from "./Terms";
 import music from "../assets/music.mp3";
 import { VolumeMute, VolumeUp } from "@styled-icons/material";
 import {
@@ -17,6 +17,8 @@ import {
 
 const LayoutStyles = styled.main`
   background: #01263c;
+  background-image: url(${background});
+  background-size: cover;
   position: relative;
   overflow: hidden;
   min-height: 100vh;
@@ -78,7 +80,7 @@ const LayoutStyles = styled.main`
 
 const ButtonFlex = styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   padding: 30px;
   align-items: center;
@@ -87,6 +89,9 @@ const ButtonFlex = styled.div`
   width: 100%;
   align-self: baseline;
   justify-self: baseline;
+  @media screen and (max-width: 768px) {
+    position: absolute;
+  }
   .controls {
     cursor: pointer;
     text-decoration: underline;
@@ -94,7 +99,6 @@ const ButtonFlex = styled.div`
 `;
 
 export default function Layout({ children }) {
-  const [showTerms, setShowTerms] = React.useState(false);
   const audioRef = React.useRef(null);
   const [audioPlaying, setAudioPlaying] = React.useState(false);
   const { audio } = useGameStateContext();
@@ -156,17 +160,16 @@ export default function Layout({ children }) {
               <source src={music} type="audio/mpeg" />
             </audio>
           </div>
-          <div
-            role="button"
+          <a
             className="controls"
-            onClick={() => setShowTerms(!showTerms)}
+            href="https://www.penhaligons.com/uk/en/game-official-regulation"
+            target="_blank"
           >
             Terms
-          </div>
+          </a>
         </ButtonFlex>
       </LayoutStyles>
       <Footer />
-      {showTerms && <Terms setShowTerms={setShowTerms} />}
     </>
   );
 }

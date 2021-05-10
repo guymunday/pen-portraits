@@ -10,6 +10,7 @@ import Card from "./Card";
 import prize from "../assets/images/prizes/matthew.png";
 import { gsap } from "gsap";
 import { useGameDispatchContext } from "../reducer/gameReducer";
+import axios from "axios";
 
 gsap.config({ nullTargetWarn: false });
 
@@ -29,6 +30,24 @@ export default function Home() {
   const [cookies] = useCookies([]);
   const [index, setIndex] = React.useState(0);
   const dispatch = useGameDispatchContext();
+
+  const newGameStarted = () => {
+    dispatch({ type: "UPDATE_AUDIO", audio: 1 });
+
+    axios
+      .post("https://portrait.wildishandco.co.uk/api/v1/start", {
+        try: 1,
+      })
+      .then(function (response) {
+        dispatch({
+          type: "UPDATE_ID",
+          id: response.data.data.id,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   React.useEffect(() => {
     let tl = gsap.timeline({ repeat: -1 });
@@ -54,7 +73,7 @@ export default function Home() {
           <Link
             style={{ display: "inline-block" }}
             to={parseInt(cookies.playAttempts) === 0 ? "" : "/play"}
-            onClick={() => dispatch({ type: "UPDATE_AUDIO", audio: 1 })}
+            onClick={newGameStarted}
           >
             <Frame image={frame} style={{ width: "100%" }}>
               <Card
@@ -82,23 +101,21 @@ export default function Home() {
           )}
 
           {parseInt(cookies.playAttempts) === 0 ? (
-            <a href="https://www.penhaligons.com/uk/en" className="button-alt">
+            <a
+              href="https://www.penhaligons.com/uk/en/categories/fragrances/shop-all"
+              className="button-alt"
+            >
               Continue shopping
             </a>
           ) : (
-            <Link
-              className="button-alt"
-              to="/play"
-              onClick={() => dispatch({ type: "UPDATE_AUDIO", audio: 1 })}
-            >
+            <Link className="button-alt" to="/play" onClick={newGameStarted}>
               Play
             </Link>
           )}
           <SwirlSvg white />
           <p>
-            Your prize will be added to your basket with an order of £150 or
-            more. Limited to 3 plays per day. Peruse the full terms and
-            conditions.
+            Your prize will be added to your bag with an order of £150 or more.
+            Limited to 7 plays per day. Peruse the full terms and conditions.
           </p>
         </div>
       </HomeStyles>
