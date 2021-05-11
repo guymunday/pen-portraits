@@ -11,10 +11,6 @@ export default function MaxAttempts() {
   const { previousPrize, id } = useGameStateContext();
   const [formSubmitted, setFormSubmitted] = React.useState(false);
 
-  const handleAddToBasket = () => {
-    finishGameAndPrize(id, previousPrize.prizeId);
-  };
-
   React.useEffect(() => {
     if (!previousPrize) {
       finishGameAndPrize(id, "LOST");
@@ -62,7 +58,6 @@ export default function MaxAttempts() {
             )}
             <AjaxButton
               prize={previousPrize.penId}
-              click={handleAddToBasket}
               setFormSubmitted={setFormSubmitted}
               style={{ display: formSubmitted ? "none" : null }}
             />

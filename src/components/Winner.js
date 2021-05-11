@@ -2,10 +2,10 @@ import * as React from "react";
 import {
   useGameStateContext,
   useGameDispatchContext,
+  prizes,
 } from "../reducer/gameReducer";
 import Popup from "./Popup";
 import SwirlSvg from "./SwirlSvg";
-import { finishGameAndPrize } from "../actions/api";
 import AjaxButton from "./AjaxButton";
 import { useCookies } from "react-cookie";
 
@@ -32,10 +32,6 @@ export default function Winner({ newGame, setNewGame, setFlipped }) {
     setNewGame(!newGame);
   };
 
-  const handleAddToBasket = () => {
-    finishGameAndPrize(id, previousPrize.prizeId);
-  };
-
   return (
     <>
       <Popup className="popup">
@@ -52,13 +48,12 @@ export default function Winner({ newGame, setNewGame, setFlipped }) {
           <h3>{currentPrize.prizeName}</h3>
         ) : (
           <h3>
-            Your prize has been added to the bag. You will see it your bag
-            when you spend a minimum of £150.
+            Your prize has been added to the bag. You will see it your bag when
+            you spend a minimum of £150.
           </h3>
         )}
         <AjaxButton
           prize={previousPrize.penId}
-          click={handleAddToBasket}
           setFormSubmitted={setFormSubmitted}
           style={{ display: formSubmitted ? "none" : null }}
         />

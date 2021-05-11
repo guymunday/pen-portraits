@@ -10,13 +10,13 @@ import prize6 from "../assets/images/prizes/beauregard.png";
 export const prizes = [
   {
     prizeName: "I say! You have won Terrible Teddy worth £204",
-    prizeId: "PRIZE1",
+    prizeId: "PLAY1",
     penId: "PLAY1",
     prizeImage: prize1,
   },
   {
     prizeName: "I say! You have won Heartless Helen worth £204",
-    prizeId: "PRIZE2",
+    prizeId: "PLAY2",
     penId: "PLAY2",
     prizeImage: prize2,
   },
@@ -28,19 +28,19 @@ export const prizes = [
   },
   {
     prizeName: "I say! You have won Cousin Flora, worth £204",
-    prizeId: "PRIZE4",
+    prizeId: "PLAY4",
     penId: "PLAY4",
     prizeImage: prize4,
   },
   {
     prizeName: "I say! You have won Roaring Radcliffe worth £204",
-    prizeId: "PRIZE5",
+    prizeId: "PLAY5",
     penId: "PLAY5",
     prizeImage: prize5,
   },
   {
     prizeName: "I say! You have won Monsiuer Beauregard worth £204",
-    prizeId: "PRIZE6",
+    prizeId: "PLAY6",
     penId: "PLAY6",
     prizeImage: prize6,
   },

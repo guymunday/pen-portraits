@@ -33,7 +33,9 @@ export default function Home() {
 
   const newGameStarted = () => {
     dispatch({ type: "UPDATE_AUDIO", audio: 1 });
+  };
 
+  React.useEffect(() => {
     axios
       .post("https://portrait.wildishandco.co.uk/api/v1/start", {
         try: 1,
@@ -47,9 +49,7 @@ export default function Home() {
       .catch(function (error) {
         console.log(error);
       });
-  };
 
-  React.useEffect(() => {
     let tl = gsap.timeline({ repeat: -1 });
 
     tl.add(() => {
