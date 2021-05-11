@@ -12,7 +12,6 @@ export default function App() {
     axios
       .get("https://portrait.wildishandco.co.uk/api/v1/content")
       .then(function (response) {
-        console.log(response);
         if (parseInt(response.data.data.block.on) === 2) {
           setGameClosed(true);
         }

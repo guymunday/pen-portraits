@@ -190,7 +190,7 @@ export default function Game() {
           type: "UPDATE_BACKUP_PRIZE",
           prize: prizes[3],
         });
-      } else if (secondPrize.includes("radcliff")) {
+      } else if (secondPrize.includes("dorothea")) {
         dispatch({
           type: "UPDATE_PRIZE",
           prize: prizes[4],

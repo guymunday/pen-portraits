@@ -4,7 +4,7 @@ import prize1 from "../assets/images/prizes/teddy.png";
 import prize2 from "../assets/images/prizes/helen.png";
 import prize3 from "../assets/images/prizes/matthew.png";
 import prize4 from "../assets/images/prizes/flora.png";
-import prize5 from "../assets/images/prizes/radcliff.png";
+import prize5 from "../assets/images/prizes/dorothea.png";
 import prize6 from "../assets/images/prizes/beauregard.png";
 
 export const prizes = [
@@ -33,7 +33,7 @@ export const prizes = [
     prizeImage: prize4,
   },
   {
-    prizeName: "I say! You have won Roaring Radcliffe worth £204",
+    prizeName: "I say! You have won Countess Dorothea, worth £204",
     prizeId: "PLAY5",
     penId: "PLAY5",
     prizeImage: prize5,
