@@ -16,6 +16,11 @@ const PopupStyles = styled.div`
   overflow: scroll;
   background: rgba(0, 0, 0, 0.8);
   font-family: "TTBarrels";
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none;
+  }
   .popup-inner {
     max-width: 320px;
     margin: auto;
