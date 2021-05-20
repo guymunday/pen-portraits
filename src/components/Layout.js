@@ -59,7 +59,7 @@ const LayoutStyles = styled.main`
     }
     &.clock-image {
       bottom: -8%;
-      left: 10%;
+      left: 14%;
       max-width: 220px;
     }
   }

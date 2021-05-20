@@ -36,7 +36,7 @@ export default function AjaxButton({
   return (
     <>
       <form
-        action="https://www-prep.penhaligons.com/uk/en/ajax/truck-game/submit"
+        action="https://www.penhaligons.com/uk/en/ajax/truck-game/submit"
         method="post"
         ref={formRef}
         {...rest}

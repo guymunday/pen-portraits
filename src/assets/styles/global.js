@@ -37,7 +37,7 @@ const global = css`
     padding: 15px;
     display: inline-block;
     text-transform: uppercase;
-
+    cursor: pointer;
     :hover {
       background: #000;
       color: white;
@@ -57,6 +57,7 @@ const global = css`
     padding: 15px;
     width: 100%;
     text-transform: uppercase;
+    cursor: pointer;
     :hover {
       background: #fff;
       color: #000;
