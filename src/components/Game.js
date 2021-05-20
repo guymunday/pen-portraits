@@ -110,7 +110,11 @@ export default function Game() {
   }, [newGame]);
 
   const saveToCookies = () => {
-    let tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
+    let tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0);
+    tomorrow.setMinutes(0);
+    tomorrow.setMilliseconds(0);
 
     if (!cookies.playAttempts) {
       setCookie("playAttempts", "6", { path: "/", expires: tomorrow });

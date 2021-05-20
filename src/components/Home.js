@@ -96,7 +96,8 @@ export default function Home() {
             </p>
           ) : (
             <p style={{ fontSize: 22 }}>
-              Flip a frame to find a match in 7 attempts and win a prize.
+              Flip a frame to find a match and win a full-size Portraits
+              fragrance. You have 7 attempts to win.
             </p>
           )}
 

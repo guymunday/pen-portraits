@@ -26,7 +26,7 @@ export default function AjaxButton({
       .then(function () {
         setTimeout(() => {
           formRef.current.submit();
-        }, 3000);
+        }, 1500);
       })
       .catch(function (error) {
         console.log(error);

@@ -89,12 +89,14 @@ const ButtonFlex = styled.div`
   width: 100%;
   align-self: baseline;
   justify-self: baseline;
+  pointer-events: none;
   @media screen and (max-width: 768px) {
     position: absolute;
   }
   .controls {
     cursor: pointer;
     text-decoration: underline;
+    pointer-events: all;
   }
 `;
 
@@ -150,7 +152,7 @@ export default function Layout({ children }) {
         <div className="layout-gradient" />
         <div style={{ position: "relative" }}>{children}</div>
         <ButtonFlex id="buttons">
-          <div role="button" className="controls" onClick={handleAudio}>
+          <div role="button" className="controls audio" onClick={handleAudio}>
             {!audioPlaying ? (
               <VolumeMute style={{ height: 40 }} />
             ) : (
@@ -161,7 +163,7 @@ export default function Layout({ children }) {
             </audio>
           </div>
           <a
-            className="controls"
+            className="controls terms"
             href="https://www.penhaligons.com/uk/en/game-official-regulation"
             target="_blank"
           >
