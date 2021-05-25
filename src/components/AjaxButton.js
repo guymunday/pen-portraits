@@ -16,7 +16,7 @@ export default function AjaxButton({
     setFormSubmitted(true);
 
     axios
-      .post("https://portrait.wildishandco.co.uk/api/v1/end", {
+      .post("https://play.penhaligons.com/api/v1/end", {
         id,
         prize,
       })

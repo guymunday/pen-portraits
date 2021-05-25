@@ -26,7 +26,7 @@ const PopupStyles = styled.div`
     margin: auto;
     padding: 30px;
     background: var(--offwhite);
-    overflow: scroll;
+    overflow: auto;
     text-align: center;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */

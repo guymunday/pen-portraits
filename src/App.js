@@ -10,7 +10,7 @@ export default function App() {
 
   const isGameLive = () => {
     axios
-      .get("https://portrait.wildishandco.co.uk/api/v1/content")
+      .get("https://play.penhaligons.com/api/v1/content")
       .then(function (response) {
         if (parseInt(response.data.data.block.on) === 2) {
           setGameClosed(true);

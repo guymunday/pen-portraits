@@ -37,7 +37,7 @@ export default function Home() {
 
   React.useEffect(() => {
     axios
-      .post("https://portrait.wildishandco.co.uk/api/v1/start", {
+      .post("https://play.penhaligons.com/api/v1/start", {
         try: 1,
       })
       .then(function (response) {
