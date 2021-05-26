@@ -115,8 +115,14 @@ export default function Home() {
           )}
           <SwirlSvg white />
           <p>
-            Your prize will be added to your bag with an order of £150 or more.
-            Limited to 7 plays per day. Peruse the full terms and conditions.
+            Your prize will be added to your bag with an order of £75 or more.
+            Limited to 7 plays per day.{" "}
+            <a
+              href="https://www.penhaligons.com/uk/en/game-official-regulation"
+              style={{ textDecoration: "underline" }}
+            >
+              Peruse the full terms and conditions.
+            </a>
           </p>
         </div>
       </HomeStyles>

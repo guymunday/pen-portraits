@@ -48,8 +48,8 @@ export default function Winner({ newGame, setNewGame, setFlipped }) {
           <h3>{currentPrize.prizeName}</h3>
         ) : (
           <h3>
-            Your prize has been added to the bag. You will see it your bag when
-            you spend a minimum of £150.
+            Please wait while we redirect you. You will see the prize in your
+            bag when you spend a minimum of £75.
           </h3>
         )}
         <AjaxButton
@@ -65,8 +65,8 @@ export default function Winner({ newGame, setNewGame, setFlipped }) {
               </button>
             )}
             <p>
-              Your prize will be added to your bag with an order of £150 or
-              more. Limited to 7 plays per day.{" "}
+              Your prize will be added to your bag with an order of £75 or more.
+              Limited to 7 plays per day.{" "}
               <a
                 style={{ textDecoration: "underline" }}
                 href="https://www.penhaligons.com/uk/en/game-official-regulation"

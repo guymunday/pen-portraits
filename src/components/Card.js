@@ -25,7 +25,7 @@ const CardStyles = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotateY(180deg) perspective(100px);
-      width: 60%;
+      width: 63%;
       transition: 0.4s;
       backface-visibility: hidden;
       pointer-events: none;
