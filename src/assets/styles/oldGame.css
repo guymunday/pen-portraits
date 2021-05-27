@@ -1779,9 +1779,7 @@ header {
     font-size: 30px;
     padding: 0px;
   }
-  .terms {
-    padding: 50px 20px 40px;
-  }
+
   .num {
     font-size: 32px;
   }
@@ -2029,9 +2027,7 @@ header {
   }
 }
 @media (max-width: 820px) {
-  .terms {
-    padding: 40px 20px;
-  }
+
   .big-title,
   .result-text {
     font-size: 43px;
@@ -2355,11 +2351,7 @@ header {
   }
 }
 @media (max-width: 420px) {
-  .terms {
-    padding: 30px 20px;
-    background: #fffdec;
-    color: #436749;
-  }
+
   .landingimage {
     background-image: url("../images/old-game/landing_mobile.jpg");
   }
